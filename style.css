@@ -166,7 +166,7 @@ textarea {
 }
 
 .btn-primary:hover {
-   
+
     color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(245, 137, 30, 0.32);
@@ -403,7 +403,7 @@ textarea {
 .hero {
     position: relative;
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -1587,6 +1587,22 @@ textarea {
     animation: none;
     transform: scale(1.1);
     box-shadow: 0 8px 26px rgba(37, 211, 102, 0.52);
+}
+
+/* ==============================================
+   RESPONSIVE — MOBILE HERO FIX (below 768px)
+   Avoids vertical-centering the hero against a
+   viewport height that hasn't settled yet on first
+   paint (address bar collapse timing on mobile).
+   ============================================== */
+@media (max-width: 767px) {
+    .hero {
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        padding-top: 128px;
+    }
 }
 
 /* ==============================================
