@@ -3,6 +3,23 @@
    Version 2.0 | Primus Tech Labs
    ============================================ */
 
+/* ---- Mobile Viewport Settle Fix
+   Forces mobile browsers to recalculate layout against
+   the real, settled viewport right after load — instead
+   of the user having to scroll to trigger it manually.
+   Fixes: fixed-position elements (navbar, wa-float) and
+   100vh/dvh-based sections rendering against a stale
+   viewport size during the address-bar collapse.
+   ============================================ */
+window.addEventListener('load', function () {
+    requestAnimationFrame(function () {
+        window.scrollTo(0, 1);
+        requestAnimationFrame(function () {
+            window.scrollTo(0, 0);
+        });
+    });
+});
+
 /* ---- AOS Init
    ============================================ */
 AOS.init({
