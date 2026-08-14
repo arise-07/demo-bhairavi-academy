@@ -3,6 +3,51 @@
    Version 2.0 | Primus Tech Labs
    ============================================ */
 
+/* ---- Back to Top Button
+   ============================================ */
+var backToTopBtn = document.getElementById('backToTop');
+
+if (backToTopBtn) {
+    window.addEventListener('scroll', function () {
+        backToTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+/* ---- Floating Button Viewport Clamp
+   Actively measures the WhatsApp + back-to-top buttons
+   and snaps them back on-screen if a mobile browser's
+   viewport-timing quirk ever renders them off-screen —
+   fixes the root symptom regardless of cause.
+   ============================================ */
+function clampFloatToViewport(el) {
+    if (!el) return;
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth;
+
+    if (rect.right > vw || rect.left < 0) {
+        el.style.right = '22px';
+        el.style.left = 'auto';
+    }
+}
+
+function clampAllFloats() {
+    clampFloatToViewport(document.querySelector('.wa-float'));
+    clampFloatToViewport(document.getElementById('backToTop'));
+}
+
+window.addEventListener('load', function () {
+    clampAllFloats();
+    requestAnimationFrame(function () {
+        clampAllFloats();
+        setTimeout(clampAllFloats, 300);
+    });
+});
+window.addEventListener('resize', clampAllFloats, { passive: true });
+
 /* ---- Mobile Viewport Settle Fix
    Forces mobile browsers to recalculate layout against
    the real, settled viewport right after load — instead
@@ -223,9 +268,9 @@ function submitToWhatsApp() {
     var message =
         'Hello Bhairavi Academy!\n\n' +
         'I am interested in enrolling.\n\n' +
-        '*Name:* ' + name + '\n' +
-        '*Phone:* ' + phone + '\n' +
-        '*Course:* ' + course + '\n\n' +
+        'Name: ' + name + '\n' +
+        'Phone: ' + phone + '\n' +
+        'Course: ' + course + '\n\n' +
         'Please get in touch with me. Thank you!';
 
     var url = 'https://wa.me/918056738833?text=' + encodeURIComponent(message);

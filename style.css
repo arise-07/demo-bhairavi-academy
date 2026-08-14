@@ -1590,6 +1590,49 @@ textarea {
     box-shadow: 0 8px 26px rgba(37, 211, 102, 0.52);
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 86px;
+    right: 22px;
+    z-index: 800;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--clr-accent, #F5891E);
+    color: #000;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(245, 137, 30, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) scale(1.08);
+}
+
+@media (max-width: 480px) {
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 80px;
+        right: 18px;
+        font-size: 0.95rem;
+    }
+}
+
 /* ==============================================
    RESPONSIVE — MOBILE HERO FIX (below 768px)
    Avoids vertical-centering the hero against a
