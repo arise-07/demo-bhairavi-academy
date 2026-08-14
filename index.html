@@ -8,22 +8,26 @@
     <!-- Prevent any mobile viewport-timing mis-paint from ever
          being visible: hide page until layout is confirmed settled,
          then reveal. Hard 1.2s fallback so it can never stay blank. -->
-    <style>html{visibility:hidden}</style>
+    <style>
+        html {
+            visibility: hidden
+        }
+    </style>
     <script>
-    (function () {
-        function reveal() { document.documentElement.style.visibility = 'visible'; }
-        function whenReady() {
-            requestAnimationFrame(function () {
-                requestAnimationFrame(reveal);
-            });
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', whenReady);
-        } else {
-            whenReady();
-        }
-        setTimeout(reveal, 1200);
-    })();
+        (function () {
+            function reveal() { document.documentElement.style.visibility = 'visible'; }
+            function whenReady() {
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(reveal);
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', whenReady);
+            } else {
+                whenReady();
+            }
+            setTimeout(reveal, 1200);
+        })();
     </script>
     <meta name="description"
         content="Bhairavi Academy - Expert NEET & JEE Coaching in Nagercoil. 90% Success Rate, Expert Faculty, Small Batches.">
@@ -54,9 +58,9 @@
     <meta name="twitter:image" content="https://bhairaviacademy.com/og-image.png">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
 
     <!-- Structured Data -->
     <script type="application/ld+json">

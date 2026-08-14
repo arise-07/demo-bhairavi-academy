@@ -8,9 +8,13 @@
 var backToTopBtn = document.getElementById('backToTop');
 
 if (backToTopBtn) {
-    window.addEventListener('scroll', function () {
+    function toggleBackToTop() {
         backToTopBtn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
+    }
+
+    toggleBackToTop();
+    window.addEventListener('load', toggleBackToTop);
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
 
     backToTopBtn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -268,9 +272,9 @@ function submitToWhatsApp() {
     var message =
         'Hello Bhairavi Academy!\n\n' +
         'I am interested in enrolling.\n\n' +
-        'Name: ' + name + '\n' +
-        'Phone: ' + phone + '\n' +
-        'Course: ' + course + '\n\n' +
+        '*Name:* ' + name + '\n' +
+        '*Phone:* ' + phone + '\n' +
+        '*Course:* ' + course + '\n\n' +
         'Please get in touch with me. Thank you!';
 
     var url = 'https://wa.me/918056738833?text=' + encodeURIComponent(message);
