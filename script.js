@@ -49,8 +49,20 @@ window.addEventListener('load', function () {
         clampAllFloats();
         setTimeout(clampAllFloats, 300);
     });
+
+    // Poll for the first 3 seconds after load to catch the
+    // mobile viewport-timing race regardless of exactly when
+    // it occurs or resolves — this is the window where we've
+    // measured the bug actually happening.
+    var pollCount = 0;
+    var pollInterval = setInterval(function () {
+        clampAllFloats();
+        pollCount++;
+        if (pollCount >= 15) clearInterval(pollInterval);
+    }, 200);
 });
 window.addEventListener('resize', clampAllFloats, { passive: true });
+window.addEventListener('scroll', clampAllFloats, { passive: true });
 
 /* ---- Mobile Viewport Settle Fix
    Forces mobile browsers to recalculate layout against
@@ -272,9 +284,9 @@ function submitToWhatsApp() {
     var message =
         'Hello Bhairavi Academy!\n\n' +
         'I am interested in enrolling.\n\n' +
-        '*Name:* ' + name + '\n' +
-        '*Phone:* ' + phone + '\n' +
-        '*Course:* ' + course + '\n\n' +
+        'Name: ' + name + '\n' +
+        'Phone: ' + phone + '\n' +
+        'Course: ' + course + '\n\n' +
         'Please get in touch with me. Thank you!';
 
     var url = 'https://wa.me/918056738833?text=' + encodeURIComponent(message);
